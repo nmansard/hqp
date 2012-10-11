@@ -1,0 +1,84 @@
+function [ primal dual h Y ] = active_search(A,b,btype,aset_init, aset_bound,THR);
+
+% active_search  solves a iHQP given in input using a hiearchical active
+%                   search method. This function corresponds to Alg. 6.
+%% Synopsis:
+%     primal              = active_search(A,b,btype);
+%     primal              = active_search(A,b,btype,aset_init,aset_bound);
+%     [ primal dual ]     = active_search(A,b,btype,aset_init,aset_bound);
+%     [ primal dual h Y ] = active_search(A,b,btype,aset_init,aset_bound);
+% 
+%% Input:
+%    A             is <p> cells of <m_k>x<nh>  matrix .
+%    b             is the <p> cells of <m_k>x2 matrices (first column is
+%                    dummy for sup bounds, second column is dummy for inf
+%                    and twin bounds). 
+%    btype         are the type (=,<=,>=,<=<=) for each b rows.
+%    aset_init     if specify, is the initial active search (cell of vector
+%                    of ranges of b rows)
+%    aset_bounds   are the corresponding bounds (=,<=,>=,<=<=). 
+%% Output:
+%    primal        primal optimum answering to the HQP.
+%    dual          corresponding dual optimum.
+%    h             "h" structure storing optimal active set and the
+%                      corresponding HCOD.
+%    Y             right basis of the HCOD "h".
+%    THR           is the threshold used to test the positivity.
+
+addpath('utils');
+p=length(A);
+nh=columns(A{1});
+
+% --- DEFAULT ARGUMENTS --------------------------------------------------------
+if nargin==3
+    % The initial active set only contains equality constraints.
+    [ aset_init aset_bound ] = initset(btype);
+    nargin=5;
+else
+    % Check the active set and activate equality constraints.
+    [ aset_init aset_bound ] = initset(btype,aset_init,aset_bound);
+end
+
+if nargin==5
+    THR = 1e-8;
+end
+% ---------------------------------------------------------------------
+
+% --- Initial HCOD
+% The active set and the HCOD are stored in the cell "h". See the hcod
+% documentation for details.
+[h Y]   = hcod(A,b,btype,aset_init,aset_bound);
+y0 = x0 = zeros(nh,1);
+kcheck  = 0;               % level of the "outer" loops whose multiplier
+                           % have already been computed and tested.
+iter    = 0;               % Number of iteration of the active search.
+dual    = {};              % Stored Lagrangian multipliers when kcheck grows.
+
+while kcheck<=p
+    [ y1 x1 ]              = ehqp_primal(h,Y);              % Alg 6#8
+    [viol tau cst]         = step_length(x0,x1,h,Y);        % Alg 6#10
+    if viol
+        000000;dispcst('Violation',iter,cst);
+        x0                 = (1-tau)*x0+tau*x1;             % Alg 6#11
+        [h Y]              = up(cst(1),cst(2),cst(3),h,Y);  % Alg 6#14
+    else
+        x0=x1;
+        for k=kcheck+1:p+1
+            lambda         = ehqp_dual(k,y1,h,Y);           % Alg 6#18
+            [need cst ]    = check_mult(lambda,h,Y);        % Alg 6#20
+            if need                                         % Alg 6#21
+                00000;c=h(cst(1)).active(cst(2));
+                00000;dispcst('Suboptimal',iter,[cst 0; cst(1) c h(cst(1)).bound(c) ]);
+                [h Y]      = down(cst(1),cst(2),h,Y);       % Alg 6#22
+                break;
+            end
+
+            h              = freeze(lambda,h);              % Alg 6#25
+            dual{k}        = lambda;
+            kcheck         = k;
+        end
+    end
+    iter=iter+1;
+end
+
+primal = x1;
