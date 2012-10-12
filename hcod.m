@@ -54,7 +54,7 @@ function [h Y] = hcod(A,b,btype,active,bounds,EPS);
 %
 % === ACTIVE SET ===
 % h{k}.active    is the map of the active constraints in W H Y':
-%                  * (W*H*Y')(active(i),:) = A(i,:)
+%                  * (W*H*Y')(i,:) = A(active(i),:)
 % h{k}.bound     is the type of the constraints (upper or lower bounds, when relevant).
 %
 %
@@ -110,7 +110,7 @@ for k=1:p
     hk.bound = zeros(hk.mmax,1);
     hk.bound(hk.active) = bounds{k};
     hk.activeb = active{k} + (bounds{k}==2)*hk.mmax;
-    hk.freeze = zeros(1,hk.mmax);
+    hk.freeze = zeros(hk.mmax,1);
     
     hk.W = eye(hk.mmax);
     hk.H = zeros(hk.mmax,nh);
