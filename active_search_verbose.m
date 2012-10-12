@@ -1,7 +1,9 @@
-function [ primal dual h Y ] = active_search(A,b,btype,aset_init, aset_bound,THR);
+function [ primal dual h Y ] = active_search_verbose(A,b,btype,aset_init, aset_bound,THR);
 
 % active_search  solves a iHQP given in input using a hiearchical active
-%                   search method. This function corresponds to Alg. 6.
+%                   search method and prints all the step of the
+%                   computation. This function corresponds to Alg. 6. It is
+%                   strictly similar to active_search.m, except for the traces.
 %% Synopsis:
 %     primal              = active_search(A,b,btype);
 %     primal              = active_search(A,b,btype,aset_init,aset_bound);
@@ -51,6 +53,8 @@ if nargin==5
 end
 % ---------------------------------------------------------------------
 
+VERBOSE = true
+
 % --- Initial HCOD
 % The active set and the HCOD are stored in the cell "h". See the hcod
 % documentation for details.
@@ -65,6 +69,7 @@ while kcheck<=p
     [ y1 x1 ]              = ehqp_primal(h,Y);              % Alg 6#8
     [viol tau cst]         = step_length(x0,x1,h,Y);        % Alg 6#10
     if viol
+        if VERBOSE dispcst('Violation',iter,cst); end
         x0                 = (1-tau)*x0+tau*x1;             % Alg 6#11
         [h Y]              = up(cst(1),cst(2),cst(3),h,Y);  % Alg 6#14
     else
@@ -73,6 +78,12 @@ while kcheck<=p
             lambda         = ehqp_dual(k,y1,h,Y);           % Alg 6#18
             [need cst ]    = check_mult(lambda,h,Y);        % Alg 6#20
             if need                                         % Alg 6#21
+                if VERBOSE 
+                    level=cst(1);
+                    c_id=h(level).active(cst(2));
+                    c_bound=h(level).bound(c_id);
+                    dispcst('Suboptimal',iter,[level c_id c_bound]);
+                end
                 [h Y]      = down(cst(1),cst(2),h,Y);       % Alg 6#22
                 break;
             end
@@ -80,6 +91,7 @@ while kcheck<=p
             h              = freeze(lambda,h);              % Alg 6#25
             dual{k}        = lambda;
             kcheck         = k;
+            if VERBOSE disp(sprintf('Validation of level %d',kcheck)); end
         end
     end
     iter=iter+1;
