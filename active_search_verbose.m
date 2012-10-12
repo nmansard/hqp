@@ -32,6 +32,7 @@ function [ primal dual h Y ] = active_search_verbose(A,b,btype,aset_init, aset_b
 % inside the "for k=kcheck+1:p+1" loop, and the current level of the outer
 % loop is stored inside "kcheck".
 %
+% Copyright Nicolas Mansard -- LAAS/CNRS -- cf. COPYING.LESSER
 %
 
 addpath('utils');

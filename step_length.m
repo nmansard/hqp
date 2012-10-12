@@ -27,6 +27,8 @@ function [ need taumax cst] = step_length(x0,x1,h,Y,THR);
 % Alg. 5#6 and 5#10. Moreover, it uses a shortcut by setting a step of
 % length tau=1-EPS if a bound is not satisfied for x_0.
 %
+% Copyright Nicolas Mansard -- LAAS/CNRS -- cf. COPYING.LESSER
+%
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
 if nargin==4

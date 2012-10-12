@@ -13,6 +13,7 @@ function [ y x ]= ehqp_primal(h,Y);
 %    y       primal optimum in the Y basis.
 %    x       primal optimum in the canonical basis.
 %
+% Copyright Nicolas Mansard -- LAAS/CNRS -- cf. COPYING.LESSER
 %
 
 p=length(h);

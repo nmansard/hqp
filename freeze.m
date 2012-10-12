@@ -19,7 +19,9 @@ function [ h ] = freeze(lambda,h,THR);
 % freezed constraint cannot be removed from the active set and therefore stays,
 % freezed and active, as an equality constraint until the remaining of the
 % active search.
-
+%
+% Copyright Nicolas Mansard -- LAAS/CNRS -- cf. COPYING.LESSER
+%
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
 if nargin==2
     THR=1e-8;

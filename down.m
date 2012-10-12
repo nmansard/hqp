@@ -14,6 +14,7 @@ function [h,Y] = down(kdown,rdown,h,Y,THR);
 %% Output:
 %    h,Y   the function modifies the input h and Y and returns them.
 %
+% Copyright Nicolas Mansard -- LAAS/CNRS -- cf. COPYING.LESSER
 %
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
