@@ -2,7 +2,8 @@ addpath('utest/utils');
 
 seed=round(rand*10000);
 %seed = 283;8394
-seed = 5123;
+%seed = 5123;
+%seed = 8394;
 
 [ nh p m r ] = randstackref(seed);
 blabla({'seed = ',seed});
