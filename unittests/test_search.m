@@ -1,4 +1,4 @@
-addpath('utest/utils');
+addpath('unittests/utils');
 
 seed=round(rand*10000);
 %seed = 283;8394
@@ -12,7 +12,7 @@ blabla({'size = ',nh,' x',p});
 %[aset abound] = randaset(btype);
 [aset abound] = dummybound(zeros(p,1));
 
-[primal dual h Y ]=active_search(A,b,btype,aset,abound);
+[primal dual h Y ]=active_search_verbose(A,b,btype,aset,abound);
 
 blabla({"Primal optimum = \n",primal'});
 blabla({"\nOptimum active set =\n",dispaset(h)});

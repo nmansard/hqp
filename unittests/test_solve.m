@@ -1,4 +1,4 @@
-addpath('utest/utils');
+addpath('unittests/utils');
 
 % Compute the solution of the eHQP using the iterative equations of
 % Siciliano91.

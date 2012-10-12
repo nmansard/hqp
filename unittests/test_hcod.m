@@ -1,8 +1,8 @@
+addpath('unittests/utils');
+
 % Unitary test to check the validity of the hcod.m function. Decompose a
 % random matrix Au and check that the recomposed decomposition is equal to
 % the original matrix.
-
-addpath('utest/utils');
 
 [ A b btype nh p mref rref Au bu ] = randstack(12);
 for k=1:p
