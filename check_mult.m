@@ -42,13 +42,17 @@ for k=1:kl
     massert( not(exist('hk')) ,'Error, hk should have been cleared.');
     hk=h(k);
     iw=hk.iw; im=hk.im; r=hk.r; n=hk.n; ra=hk.ra; rp=hk.rp; m=hk.m;
-
+    ia=hk.active;
+    
     % -1 for INF bound, and +1 for SUP bound.
-    bound_sign = hk.bound(hk.active)*2-3;
-
+    bound_sign = hk.bound(ia)*2-3;
+    freeze = hk.freeze(ia);
+        
     % Compute the lagrange multipliers oriented wrt the bound direction.
-    [l r] = max(-lambda{k} .* bound_sign);
+    [l r] = max( -lambda{k} .* bound_sign .* not(freeze) );
 
+    massert( (l==0) | (!hk.freeze(r)),'r is freeze and should not be')
+    
     if l>maxl & hk.btype(r)!=Etwin & !hk.freeze(r)
         maxl=l; cst=[k r];
     end
