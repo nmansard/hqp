@@ -1,4 +1,4 @@
-function [ primal dual h Y ] = active_search_verbose(A,b,btype,aset_init, aset_bound,THR);
+function [ primal dual h Y xtrack ] = active_search_verbose(A,b,btype,aset_init, aset_bound,THR);
 
 % active_search  solves a iHQP given in input using a hiearchical active
 %                   search method and prints all the step of the
@@ -63,11 +63,14 @@ VERBOSE = true
 y0 = x0 = zeros(nh,1);
 kcheck  = 0;               % level of the "outer" loops whose multiplier
                            % have already been computed and tested.
-iter    = 0;               % Number of iteration of the active search.
+iter    = 1;               % Number of iteration of the active search.
 dual    = {};              % Stored Lagrangian multipliers when kcheck grows.
+xtrack  = {};
 
 while kcheck<=p
     [ y1 x1 ]              = ehqp_primal(h,Y);              % Alg 6#8
+    xtrack{1,iter} = x0;
+    xtrack{2,iter} = x1;
     [viol tau cst]         = step_length(x0,x1,h,Y);        % Alg 6#10
     if viol
         if VERBOSE dispcst('Violation',iter,cst); end
@@ -99,3 +102,5 @@ while kcheck<=p
 end
 
 primal = x1;
+xtrack{1,end+1} = x1;
+xtrack{2,end} = x1;
