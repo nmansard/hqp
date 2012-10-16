@@ -14,15 +14,9 @@ for k=1:length(A)
         Ai=A{k}(i,:); d=b{k}(i);
         a1=Ai(1); a2=Ai(2);
         x=-100:10:100;
-        %if abs(a1)>abs(a2)
-        %    plot( -a2/a1*x+d,x, 'color', color(k,:) );
-        %else
-        %    plot( x,-a1/a2*x+d, 'color', color(k,:) );
-        %end
-        if abs(a1)>0
+        if abs(a1)>abs(a2)
             plot( (d-a2*x)/a1,x, 'color', color(k,:) );
-        end
-        if abs(a2)>0
+        else
              plot( x,(d-a1*x)/a2, 'color', color(k,:) );
         end
        
