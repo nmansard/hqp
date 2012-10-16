@@ -49,7 +49,7 @@ for k=1:kl
     % -1 for INF bound, and +1 for SUP bound.
     bound_sign = hk.bound(ia)*2-3;
     freeze = hk.freeze(ia);
-        
+    
     % Compute the lagrange multipliers oriented wrt the bound direction.
     [l r] = max( -lambda{k} .* bound_sign .* not(freeze) );
 
@@ -83,6 +83,7 @@ end
 % --- Validity test (not necessary in release mode).
 % --- Check the validity of the multipliers ie A'lambda = 0.
 if kl<length(h) & norm(active_rows(h(1:kl))'*stacked_cell(lambda))>1e-5
+    disp('Error in reconstruction')
     disp(norm(active_rows(h(1:kl))'*stacked_cell(lambda)));
 end
 
