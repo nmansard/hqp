@@ -64,17 +64,21 @@ for k=kl-1:-1:1
     iw =hk.iw;   im=hk.im; r=hk.r; n=hk.n; ra=hk.ra; rp=hk.rp; m=hk.m;
     im0=im(1:n); im1=im(n+1:end);
 
-    L          = hk.H(im1,rp+1:ra);
-    M1         = hk.H(im1,1:rp);
-    W1         = hk.W(iw,im1);
+    if r>0
+        L          = hk.H(im1,rp+1:ra);
+        M1         = hk.H(im1,1:rp);
+        W1         = hk.W(iw,im1);
 
-    rho        = rhobar(rp+1:ra);  % Alg 2#8
-    rhobar     = rhobar(1:rp);
+        rho        = rhobar(rp+1:ra);  % Alg 2#8
+        rhobar     = rhobar(1:rp);
     
-    rho        = L'\rho;           % Alg 2#9
-    lambdak{k} = W1*rho;           % Alg 2#10
-    if k>1
-        rhobar = rhobar - M1'*rho; % Alg 2#11
+        rho        = L'\rho;           % Alg 2#9
+        lambdak{k} = W1*rho;           % Alg 2#10
+        if k>1
+            rhobar = rhobar - M1'*rho; % Alg 2#11
+        end
+    else
+        lambdak{k} = zeros(m,1);
     end
     
     clear hk;
