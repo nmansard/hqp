@@ -4,13 +4,13 @@ hqp
 Hierachical Quadratic Problem solver
 
 This software implements a MATLAB-based hierarchical least-square quadratic
-solver (HQP) based on the paper 
+solver (HQP) based on the paper [1]
 
-The software is organize as follow:
+The software is organized as follow:
 
 1. in the main directory, the main functions of the solver:
 
-* hcod computes the HCOD from the problem specification A,b$ and an initial
+* hcod computes the HCOD from the problem specification A,b and an initial
   guess of the active set.  The function returns h and Y that are manipulated
   by the other function during the active-search loop.
 
@@ -34,17 +34,17 @@ The software is organize as follow:
 
 2. in utils, the secondary functions used by the solver.
 
-3. in utest, some unitary tests that validates the main functionnalities of the
+3. in unittests, some unitary tests that validates the main functionnalities of the
   solver.
 
-4. in utest/utils, a set of secondary functions used by the tests, with no real
+4. in unittests/utils, a set of secondary functions used by the tests, with no real
   arrangement nor documentation.
 
-All the code should be run from the main directory. Add utest in your path and
+All the code should be run from the main directory. Add unittests in your path and
 launch the unitary tests:
 
-    addpath('utest')
-    tsearch
+    addpath('unittests')
+    test_search
 
 Author
 ======
@@ -53,6 +53,6 @@ Nicolas Mansard, LAAS/CNRS, Toulouse, France
 Reference 
 =========
 
-* "Hiearchical Quadratic Programming", by Adrien Escande (JRL-Japan/CNRS,
+[1] "Hiearchical Quadratic Programming", by Adrien Escande (JRL-Japan/CNRS,
 Tsukuba, Japan), Nicolas Mansard (LAAS/CNRS, Toulouse, France) and Pierre-Brice
 Wieber (INRIA, Grenoble, France), on-going submission to IJRR.
