@@ -13,7 +13,7 @@ function [ need taumax cst] = step_length(x0,x1,h,Y,THR);
 %    x1      next value of the primal optimum.
 %    h       "h" structure storing all the HQP data.
 %    Y       right basis of the HCOD.
-%    THR     is the threshold used to test the collision.
+%    THR     is the threshold used to test the constraint violation.
 %% Output:
 %    need    is true iff at least one constraint needs to be activated at
 %               the next step of the active search.
@@ -94,7 +94,7 @@ function [ violtype violval ] = check_bound(val,bound,type,THR);
 %    val       is the value to test against bound.
 %    bound     is a 1x2 vector of floats.
 %    type      specifies the bound type (=,<=,>=,<=<=).
-%    THR       is the threshold used to test the collision.
+%    THR       is the threshold used to test the constraint violation.
 %% Output:
 %    violtype  if no bound is violated, return Enone, otherwise returns Einf or
 %                Esup depending on the violation.
