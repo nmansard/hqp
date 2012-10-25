@@ -13,7 +13,7 @@ function str = hqp_print(h,filename);
 %   str       returns the string that may be written in the file.
 
 p=length(h);
-nh=columns(h(1).A);
+nh=size(h(1).A,2);
 addpath('utils');
 constants;
 
