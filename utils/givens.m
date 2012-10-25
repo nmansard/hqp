@@ -26,6 +26,6 @@ else
 end
 
 R(i,i) =  c;
-R(i,j) = -s;
+R(i,j) =  s;
 R(j,j) =  c;
-R(j,i) =  s;
+R(j,i) = -s;

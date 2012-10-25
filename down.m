@@ -48,7 +48,7 @@ for i=pivot+1:m
     if abs(abs(hk.W(iw(rdown),im(pivot)))-1)<THR^2/2
         break;
     end
-    Wdown         = givens(hk.W(iw(rdown),im),pivot,i)';
+    Wdown         = givens(hk.W(iw(rdown),im),pivot,i);
     hk.W(iw,im)   = hk.W(iw,im)*Wdown;
     hk.H(im,1:ra) = Wdown'*hk.H(im,1:ra);
 end
@@ -82,7 +82,7 @@ end
 % 1.c CASE 2: L is now upper Hessenberg and should be corrected.
 Ydown=eye(nh);
 for i=1:hk.r-1
-    R=givens(hk.H(im(n+i),:),rp+i,rp+i+1)';
+    R=givens(hk.H(im(n+i),:),rp+i,rp+i+1);
     Ydown=Ydown*R;
     hk.H(im,:)=hk.H(im,:)*R;
 end
@@ -123,7 +123,7 @@ for k=kdown+1:p
 
         % Nullify all the m_i from m_prom.
         for i=prom+1:hk.n
-            Wdown         = givens(hk.H(im,rp),prom,i);
+            Wdown         = givens(hk.H(im,rp),prom,i)';
             hk.H(im,1:ra) = Wdown*hk.H(im,1:ra);
             hk.W(iw,im)   = hk.W(iw,im)*Wdown';
         end
@@ -141,7 +141,7 @@ for k=kdown+1:p
     else
         % 2.b.CASE 2: all the m_i are zero, L_k is upper hessenberg.
         for i=1:r
-            R             = givens(hk.H(im(n+i),:),rp-1+i,rp-1+i+1)';
+            R             = givens(hk.H(im(n+i),:),rp-1+i,rp-1+i+1);
             Ydown         = Ydown*R;
             hk.H(im,:)    = hk.H(im,:)*R;
         end

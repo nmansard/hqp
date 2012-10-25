@@ -48,7 +48,7 @@ W=eye(m);
 if rankA<m
   for j=rankA:-1:1
     for i=m:-1:rankA+1
-        U=givens(L(:,j),j,i);
+        U=givens(L(:,j),j,i)';
         L=U*L;  W=W*U';
     end
   end

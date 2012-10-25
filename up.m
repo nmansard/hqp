@@ -72,7 +72,7 @@ if rup<=ra
     if rup>rp
         % There is nonzero elements below L, Eq (82).
         for i=rup-rp:-1:1
-            Wi          = givens( hk.H(im(:),rp+i),n+i,m );
+            Wi          = givens( hk.H(im(:),rp+i),n+i,m )';
             hk.H(im,:)  = Wi*hk.H(im,:);
             hk.W(iw,im) = hk.W(iw,im)*Wi';
         end
@@ -89,7 +89,7 @@ end
 %     Nullify the tail of the row: 
 Yup = eye(nh);
 for i=rup-1:-1:ra+1  % The loop corresponds to Eq (79).
-    Yi               = givens(hk.H(im(end),:),i,i+1)';
+    Yi               = givens(hk.H(im(end),:),i,i+1);
     hk.H(im(end),:)  = hk.H(im(end),:)*Yi;
     Yup              = Yup*Yi;
 end
@@ -119,7 +119,7 @@ for k=kup+1:p
         % (case V.B.6) Aup is colinear to one row of this level: rank lost here.
         rdef = rup-rp; % Row to be removed from L.
         for i=rdef:-1:2 % The loop corresponds to Eq (79).
-            Wi             = givens(hk.H(im(:),rp+i),n+i-1,n+rdef);
+            Wi             = givens(hk.H(im(:),rp+i),n+i-1,n+rdef)';
             hk.H(im(:),:)  = Wi*hk.H(im(:),:);
             hk.W(iw,im)    = hk.W(iw,im)*Wi';
         end
