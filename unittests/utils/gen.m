@@ -61,7 +61,7 @@ reshot=0;
 % --- Reference LQ decomposition
 %
 % Y: slice of the matrix corresponding to L0 (L*Yp)
-% Yp: begining of the matrix Ya until L0 ([M L]*Yp)
+% Yp: beginning of the matrix Ya until L0 ([M L]*Yp)
 % Z: orthogonal to Yp at iter k, thus not really useful, except Z{n}.
 % U,V,W: left basis, W=[V U], W.[N 0 ;M L]=[VN+UM; UL].
 % L0: reducted triangle - L: complete right size: L=[ [0;L0] 0 ].

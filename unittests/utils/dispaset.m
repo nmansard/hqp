@@ -1,6 +1,6 @@
 function res = dispaset(h)
 
-% Return a string display the active set in h.
+% Return a string displaying the active set in h.
 
 p=length(h);
 res='';

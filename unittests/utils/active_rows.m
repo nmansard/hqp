@@ -1,6 +1,6 @@
 function [A,b] = active_rows(h,data);
 
-% active_rows returns the stack of the input active quatity.
+% active_rows returns the stack of the input active quantity.
 %
 %% Synopsis:
 %    A     = active_rows(h)
@@ -9,14 +9,14 @@ function [A,b] = active_rows(h,data);
 %    [A,b] = active_rows(h,data)
 %
 %% Input:
-%    h      is a cell containing a "active" field that is an array of indices.
+%    h      is a cell containing an "active" field that is an array of indices.
 %    data   is a cell whose length is the same as h. Each cell k contains a
 %              matrix (or colvec) of h(k).mmax rows. 
 %
 %% Output: 
 %    A      the function selects the active rows of the cell "data".
-%              (corresponding to h(k).active) and stack them to return.  If no data is
-%              input, then data is chosen from h.A. 
+%              (corresponding to h(k).active) and stack them to return.  If no 
+%              data is input, then data is chosen from h.A. 
 %    b      the stacked h.b
 %
 %

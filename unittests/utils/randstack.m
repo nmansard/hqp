@@ -1,7 +1,7 @@
 function [ A b btype nh p m r Au bu  ] = randstack( nh,p,m,r,svbound );
 
-% randstack randomly shoot a hierarchical problem from the size at each level
-% and the bounds of the singular values.
+% randstack randomly generates a hierarchical problem from the size of each 
+% level and the bounds of the singular values.
 % 
 %% Synopsis:
 %  [ A b btype nh p m r Au bu ] = randstack()
@@ -12,8 +12,8 @@ function [ A b btype nh p m r Au bu  ] = randstack( nh,p,m,r,svbound );
 %% Input:
 %   nh       is the size of the parameter space (number of columns of A).
 %   p        is the number of levels.
-%   m        is the size (number of rows) of each levels.
-%   r        is the rank of each levels (rank of Ak Z_{k-1} when all the
+%   m        is the size (number of rows) of each level.
+%   r        is the rank of each level (rank of Ak Z_{k-1} when all the
 %               constraints are active).
 %   svbound  is the bound of the nonzero singular values of Ak Z_{k-1}
 %               when all the constraints are active.
@@ -67,14 +67,14 @@ for k=1:p
     rak = sum(r(1:k-1));
     mk=m(k); rk=r(k); nk=mk-rk; zk = nh-rak-rk;
     
-    % Shoot the bounds of the problem, as b = [ x1 x2 ] with x1<x2.
+    % Generate the bounds of the problem, as b = [ x1 x2 ] with x1<x2.
     b{k}=sort(((-.5+rand(mk,2))*2),2);
-    % Shoot the type of the constraints: nEq equalities first, and then
+    % Generate the type of the constraints: nEq equalities first, and then
     % bounds among <=,>=,<=<= .
     nEq=round(rand*m(k));
     btype{k} = [ ones(nEq,1) ; ceil(rand(m(k)-nEq,1)*3)+1 ];
    
-    % Shoot a matrix of the form W * [ N 0 0 ; M S 0 ] with S a nonzero
+    % Generate a matrix of the form W * [ N 0 0 ; M S 0 ] with S a nonzero
     % diagonal a W full rank.
     Sk = diag(rand(rk,1)*diff(svbound)+svbound(1));
     Ak = [ rand(mk,rak) [ Sk;zeros(nk,rk) ] zeros(mk,zk) ];
@@ -102,7 +102,7 @@ end
 % --------------------------------------------------------------------
 function [M] = mrand(n,m, sbound)
 
-  % Shoot a matrix whose svd is inside [.5 1.5].
+  % Generate a matrix whose svd is inside sbound (default is [.5 1.5]).
 
   if nargin==2
       sbound = [0.5 1.5];

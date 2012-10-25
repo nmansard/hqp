@@ -1,6 +1,6 @@
 function [ nh p m r seed ] = randstackref(seed)
 
-% randstackref randomly shoots the size of a HQP problem. These size
+% randstackref randomly generates the size of a HQP problem. These size
 % parameters can then be passed to randstack to get a random HQP.
 % 
 %% Synopsis:
@@ -8,8 +8,8 @@ function [ nh p m r seed ] = randstackref(seed)
 %  [ nh p m r ]      = randstack(seed)
 %
 % Input:
-%  seed   if given, the seed is used to initialize the random
-%            generator. Otherwise, a seed is randomly chosen and returned.
+%  seed   if given, the seed is used to initialize the random generator. 
+%            Otherwise, a seed is randomly chosen and returned.
 %
 %% Output:
 %   nh       is the size of the parameter space (number of columns of A).
