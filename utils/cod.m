@@ -5,7 +5,7 @@ function [ W L Q rankA ] = cod(A,THR,smallL);
 % a
 %% Synopsis:
 %     [ W L Q ]      = cod(A)
-%     [ W L Q ]      = cod(A,th)
+%     [ W L Q ]      = cod(A,THR)
 %     [ W L Q rank ] = cod(A)
 %     [ W L Q rank ] = cod(A,THR)
 %     [ W L Q ]      = cod(A,THR,1)
@@ -13,8 +13,8 @@ function [ W L Q rankA ] = cod(A,THR,smallL);
 %% Input:
 %    A        is the matrix to decompose
 %    THR      is the threshold below which rows are neglected.
-%    smallL   if specified to 1, causes the only the non zero part of L is
-%               returned (in which case the product W*L*Q is not consistent).
+%    smallL   if specified to 1, the non zero part of L is returned (in which 
+%               case the product W*L*Q is not consistent).
 %% Output:
 %    W,L,Q    returns the COD decomposition W,L,Q such that W*L*Q==A, W and
 %               Q being orthonormal matrices.
@@ -44,7 +44,7 @@ end;
 % 3. Compute the left basis of the COD.
 W=eye(m);
 
-% This loop corresponds to eq. (79).
+% This loop corresponds to eq. (II-15).
 if rankA<m
   for j=rankA:-1:1
     for i=m:-1:rankA+1
@@ -54,7 +54,7 @@ if rankA<m
   end
 end
 
-% Permute to have L=[0;L0] instead of L=[L0;0].
+% Permute so as to have L=[0;L0] instead of L=[L0;0].
 L=[L(rankA+1:end,:); L(1:rankA,:)];
 W=E*[W(:,rankA+1:end) W(:,1:rankA)];
 

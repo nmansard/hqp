@@ -1,6 +1,6 @@
 function [R] = givens(x,i,j)
 
-% Givens    compute the givens rotation R that nullify x(j) using x(i):
+% Givens    compute the Givens rotation R that nullify x(j) using x(i):
 %              (R*x)(j) == (x'*R')(j) == 0
 %% Synopsis:
 %      R = givens(x,i,j)

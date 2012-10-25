@@ -1,7 +1,7 @@
 function [ aset bounds ]= initset(btype,ainit, boundinit);
 
-% initset: From the type of the type of the constraints, and maybe an initial
-% set, activate all the TWIN (equality constraints).
+% initset: From the type of the constraints, and possibly an initial set, 
+% activate all the TWIN (equality constraints).
 %% Synopsis:
 %     [ aset bounds ] = initset(btype,ainit, boundinit)
 % 
@@ -10,7 +10,7 @@ function [ aset bounds ]= initset(btype,ainit, boundinit);
 %    ainit       initial guess for the active set.
 %    boundinit   bounds initialy active.
 %% Output:
-%    aset        initial active set plus the equality constraint (if not initial
+%    aset        initial active set plus the equality constraint (if no initial
 %                  guess, returns only the list of the equality constraints).
 %    bounds      corresponding active bounds
 %
