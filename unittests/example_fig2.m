@@ -89,8 +89,10 @@ massert( norm([xtrack{1,:}]-tracking)<1e-3, ...
 % Plot the algorithm path. 
 
 % The path is first shifted back to fit the original problem.
-xi=[xtrack{1,:}](1,:)+x0(1);
-yi=[xtrack{1,:}](2,:)+x0(2);
+xt=[xtrack{1,:}]
+xi=xt(1,:)+x0(1);
+yt=[xtrack{1,:}]
+yi=yt(2,:)+x0(2);
 
 % The initial point is plotted as a circle.
 hplot(end+1) = plot(x0(1),x0(2),'o','color',[.6 .6 .6],'MarkerSize',20,'LineWidth',3);
