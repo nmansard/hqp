@@ -9,12 +9,11 @@ function [h,Y] = up(kup,cup,bound,h,Y,THR);
 %% Input:
 %    kup   level where the constraint is going to be activated
 %    cup   id of the constraint of level kup to be activated
-%    bound (amond 1="left" for upper bound and 2="right" for lower
-%               bound). Bound to be activated.
+%    bound (among 1="left" for upper bound and 2="right" for lower bound).
+%               Bound to be activated.
 %    h     "h" structure storing all the HQP data.
 %    Y     right basis of the HCOD.
-%    THR      epsilon threshold used to decide the rank-deficiency of a
-%                matrix. 
+%    THR   epsilon threshold used to decide the rank-deficiency of a matrix. 
 %% Output:
 %    h,Y   the function modifies the input h and Y and returns them.
 %

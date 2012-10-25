@@ -1,14 +1,14 @@
 function [ need cst h  maxl ] = check_mult(lambda,h,Y,THR);
 
-% check_mult searches a lexicographic positive multipliers that is not an
-%               equality.
+% check_mult searches a lexicographic positive multiplier that does not
+%               correspond to an equality.
 %% Synopsis:
 %   [ need cst      ]   = check_mult(lambda,h,Y)
 %   [ need cst maxl ]   = check_mult(lambda,h,Y)
 %   [ need cst maxl h ] = check_mult(lambda,h,Y)
 % 
 %% Input:
-%    lambda   multiplier to be tested.
+%    lambda   multipliers to be tested.
 %    h       "h" structure storing all the HQP data.
 %    Y       right basis of the HCOD.
 %    THR     is the threshold used to test the positivity.
@@ -16,11 +16,11 @@ function [ need cst h  maxl ] = check_mult(lambda,h,Y,THR);
 %    need    returns "need = false" if no constraint satisfies the
 %               lexicographic and bound-type properties. Otherwise, returns
 %               "need = true" and the reference on the maximum.
-%    cst     if need is true, return the reference to the constraint
-%               corresponding of the maximum of the multiplier.
-%    h       If need is false, then the function has a side effect: it
-%               modifies the "freeze" field of the "h" structure. To account
-%               for the side effect, h is returned.
+%    cst     if need is true, the reference to the constraint corresponding 
+%               to the maximum of the multipliers.
+%    h       If need is false, then the function has a side effect: it modifies
+%               the "freeze" field of the "h" structure. To account for the 
+%               side effect, h is returned.
 %    maxl    the reached maximum corresponding to the cst constraint.
 %
 % Copyright Nicolas Mansard -- LAAS/CNRS -- cf. COPYING.LESSER
@@ -65,12 +65,12 @@ end
 need = (maxl>0);
 
 % --- FREEZE LOOP ----------------------------------------------------
-% Instead of keeping all the multipliers of any levels, the algorithm
+% Instead of keeping all the multipliers of every levels, the algorithm
 % "freezes" the constraint corresponding to nonzero multiplier. These
-% constraints will never be lexicographic positiv for the following steps of
-% the algorithm. A freezed constraint cannot be removed from the active set
-% and therefore stays, freezed and active, as an equality constraint until
-% the remaining of the active search.
+% constraints will never be lexicographically positive for the following steps
+% of the algorithm. A freezed constraint cannot be removed from the active set
+% and therefore stays, freezed and active, as an equality constraint until the 
+% end of the active search.
 if nargout>=3 && not(need)
     for k=1:kl
         positive                 = find( abs(lambda{k})>THR );

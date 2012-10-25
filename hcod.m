@@ -1,7 +1,7 @@
 function [h Y] = hcod(A,b,btype,active,bounds,EPS);
 
-% hcod      computes the HCOD decomposition of A, and initialize the
-%             structure h storing the problem data.
+% hcod      computes the HCOD decomposition of A, and initialize the structure
+%              h storing the problem data.
 %% Synopsis:
 %    [h Y] = hcod(A,b,btype)
 %    [h Y] = hcod(A,b,btype, active,bounds )
@@ -9,17 +9,16 @@ function [h Y] = hcod(A,b,btype,active,bounds,EPS);
 %
 %% Input:
 %    A,b      square-root Hessian and gradient of the HQP problem.
-%    btype    bound types (=,<=,>=,<=<=) of the constraints/
+%    btype    bound types (=,<=,>=,<=<=) of the constraints
 %    active   active set for which the HCOD should be computed.
 %    bounds   active bounds of the active set
-%    EPS      epsilon threshold used to decide the rank-deficiency of a
-%                matrix. 
+%    EPS      epsilon threshold used to decide the rank-deficiency of a matrix. 
 %    
 %% Output:
 %    h        h structure storing the whole problem, the active set and the
-%                decomposition. h is detailed in details below.
-%    Y        the right basis (common to all the levels and then not stored
-%                in the cell h).
+%                decomposition. h is detailed below.
+%    Y        the right basis (common to all the levels and then not stored in 
+%                the cell h).
 %
 %% Initialization of the h structure.
 % === PROBLEM DEFINITION ===

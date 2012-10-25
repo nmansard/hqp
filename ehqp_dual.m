@@ -1,9 +1,9 @@
 function [ lambdak ]= ehqp_dual(kl,y,h,Y);
 
 %  ehqp_dual   computes the dual optimum (Lagrange multipliers for stage "kl",
-%                 being given the primal optimum expressed in the Y
-%                 basis. This function corresponds to Alg. 2 of the
-%                 paper. The w_k^* is also computed.
+%                 being given the primal optimum expressed in the Y basis. 
+%                 This function corresponds to Alg. 2 of the paper. The w_k^* 
+%                 is also computed.
 %% Synopsis:
 %    lambda   = ehqp_dual(kl,y,h,Y)
 %% Input:
@@ -30,7 +30,7 @@ if length(y)==1 y(2,1)=0; end
 % 1. Compute rho: rho = Y'*J'*( e-J*x )
 if kl>p
     % 1. [Level p+1]: Try to minimize the norm of the solution: this case is explored
-    % in Sec. III.F and IV.F.
+    % in Sec. I-4.5.
     rhobar = -y;
 else
 

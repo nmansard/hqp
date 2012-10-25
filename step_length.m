@@ -4,7 +4,7 @@ function [ need taumax cst] = step_length(x0,x1,h,Y,THR);
 %                  constraints.  In that case, return [true 1 []].
 %                  Otherwise, return false, the step length and the
 %                  reference on the first violated constraint. This function
-%                  corresponds roughly to Alg. 5 of the paper.
+%                  corresponds roughly to Alg. 4 of the paper.
 %% Synopsis:
 %    [ need taumax cst ] = step_length(x0,x1,h,Y)
 %    [ need taumax cst ] = step_length(x0,x1,h,Y,THR)
@@ -22,9 +22,9 @@ function [ need taumax cst] = step_length(x0,x1,h,Y,THR);
 %               activated. In that case, cst = [ k c bound ], the three
 %               arguments to be given to the "up" function.
 %
-% The function does not follows exactly Alg. 5 because of the double
+% The function does not follows exactly Alg. 4 because of the double
 % bounds. It uses the subfunctions check_bound to factorize the code of
-% Alg. 5#6 and 5#10. Moreover, it uses a shortcut by setting a step of
+% Alg. 4#6 and 4#10. Moreover, it uses a shortcut by setting a step of
 % length tau=1-EPS if a bound is not satisfied for x_0.
 %
 % Copyright Nicolas Mansard -- LAAS/CNRS -- cf. COPYING.LESSER
@@ -54,18 +54,18 @@ for k=1:p
         typ = hk.btype(r);
         Ax1 = hk.A(r,:)*x1;
         
-        [ typ1 b1 ] = check_bound(Ax1,b,typ,THR);  % Alg 5#10
+        [ typ1 b1 ] = check_bound(Ax1,b,typ,THR);  % Alg 4#10
 
         if typ1~=Enone
             Ax0  = hk.A(r,:)*x0;
-            typ0 = check_bound(Ax0,b,typ,THR);     % Alg 5#6
+            typ0 = check_bound(Ax0,b,typ,THR);     % Alg 4#6
             if typ0==Enone
-                tau=(b1-Ax0)/(Ax1-Ax0);            % Alg 5#7
+                tau=(b1-Ax0)/(Ax1-Ax0);            % Alg 4#7
             else
-                tau=1-THR;                         % Alg 5#9
+                tau=1-THR;                         % Alg 4#9
             end
 
-            if tau<taumax                          % Alg 5#15
+            if tau<taumax                          % Alg 4#15
                 taumax=tau;
                 if typ1==Einf cst=[k r 1];
                 else          cst=[k r 2];
@@ -76,7 +76,7 @@ for k=1:p
     clear hk;
 end
 
-need=taumax<1;                                    % Alg 5#17 and 5#11
+need=taumax<1;                                    % Alg 4#17 and 4#11
 
 end
 
@@ -91,7 +91,7 @@ function [ violtype violval ] = check_bound(val,bound,type,THR);
 %   [ violtype violval ] = check_bound(val,bound,type);
 %   [ violtype violval ] = check_bound(val,bound,type,THR);
 %% Input:
-%    val       is the value to test agains bound.
+%    val       is the value to test against bound.
 %    bound     is a 1x2 vector of floats.
 %    type      specifies the bound type (=,<=,>=,<=<=).
 %    THR       is the threshold used to test the collision.

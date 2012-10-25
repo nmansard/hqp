@@ -1,7 +1,7 @@
 function [ h ] = freeze(lambda,h,THR);
 
 % freeze stores a Boolean in "h" to prevent the deactivation of the constraints
-% whose multipliers are nonzero. 
+% whose Lagrange multipliers are nonzero. 
 %% Synopsis:
 %    h = freeze(lambda,h)
 %    h = freeze(lambda,h,THR)
@@ -15,9 +15,9 @@ function [ h ] = freeze(lambda,h,THR);
 %
 % Instead of keeping all the multipliers of any levels, the algorithm "freezes"
 % the constraint corresponding to nonzero multiplier. These constraints will
-% never be lexicographic positiv for the following steps of the algorithm. A
-% freezed constraint cannot be removed from the active set and therefore stays,
-% freezed and active, as an equality constraint until the remaining of the
+% never be lexicographicaly positive for the following steps of the algorithm. 
+% A freezed constraint cannot be removed from the active set and therefore 
+% stays, freezed and active, as an equality constraint until the end of the 
 % active search.
 %
 % Copyright Nicolas Mansard -- LAAS/CNRS -- cf. COPYING.LESSER

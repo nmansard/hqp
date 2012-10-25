@@ -1,16 +1,15 @@
 function [h,Y] = down(kdown,rdown,h,Y,THR);
 
-% down    deactives one constraint and modifies consequently the HCOD.
+% down    deactivates one constraint and modifies consequently the HCOD.
 %% Synopsis:
 %    [h Y] = down(kdown,rdown,h,Y)
 %    [h Y] = down(kdown,rdown,h,Y,THR)
 %% Input:
-%    kdown   level where the constraint is going to be activated
-%    rdown   row number of the constraint of level kdown to be activated
+%    kdown   level where the constraint is going to be deactivated
+%    rdown   row number of the constraint of level kdown to be deactivated
 %    h       "h" structure storing all the HQP data.
 %    Y       right basis of the HCOD.
-%    THR      epsilon threshold used to decide the rank-deficiency of a
-%                matrix. 
+%    THR      epsilon threshold used to decide the rank-deficiency of a matrix.
 %% Output:
 %    h,Y   the function modifies the input h and Y and returns them.
 %
