@@ -31,15 +31,16 @@ function [ need taumax cst] = step_length(x0,x1,h,Y,THR);
 %
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
-if nargin==4
+nin = nargin
+if nin==4
     % Default argument for the HCOD threshold.
     THR=1e-8;
-    nargin=nargin+1;
+    nin=nin+1;
 end
 % ---------------------------------------------------------------------
 
 p=length(h);
-nh=columns(Y);
+nh=size(Y,2);
 constants;
 
 taumax=1; cst=[];
@@ -55,7 +56,7 @@ for k=1:p
         
         [ typ1 b1 ] = check_bound(Ax1,b,typ,THR);  % Alg 5#10
 
-        if typ1!=Enone
+        if typ1~=Enone
             Ax0  = hk.A(r,:)*x0;
             typ0 = check_bound(Ax0,b,typ,THR);     % Alg 5#6
             if typ0==Enone

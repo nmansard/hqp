@@ -29,12 +29,12 @@ end
 
 rand('state',seed);
 randn('state',rand*1000);
-rande('state',rand*1000);
 
-nh=floor(rande*20)+5;
+nh=floor(exprnd(1)*20+5);
 maverage = max(nh * (randn*0.2+0.25),4);
 p=max(1,floor(nh/maverage));
-m=r=[];
+m=[];
+r=[];
 m = ceil(max(0.2,randn(p,1)*0.5+1)*maverage);
 r = floor(max(0.2,randn(p,1)*0.5+0.8)*maverage);
 r = min(m,r); r=max(r,1);

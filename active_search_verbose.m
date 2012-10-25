@@ -37,19 +37,20 @@ function [ primal dual h Y xtrack ] = active_search_verbose(A,b,btype,aset_init,
 
 addpath('utils');
 p=length(A);
-nh=columns(A{1});
+nh=size(A{1},2);
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
-if nargin==3
+nin = nargin
+if nin==3
     % The initial active set only contains equality constraints.
     [ aset_init aset_bound ] = initset(btype);
-    nargin=5;
+    nin=5;
 else
     % Check the active set and activate equality constraints.
     [ aset_init aset_bound ] = initset(btype,aset_init,aset_bound);
 end
 
-if nargin==5
+if nin==5
     THR = 1e-8;
 end
 % ---------------------------------------------------------------------
@@ -60,7 +61,8 @@ VERBOSE = true
 % The active set and the HCOD are stored in the cell "h". See the hcod
 % documentation for details.
 [h Y]   = hcod(A,b,btype,aset_init,aset_bound);
-y0 = x0 = zeros(nh,1);
+y0 = zeros(nh,1);
+x0 = zeros(nh,1);
 kcheck  = 0;               % level of the "outer" loops whose multiplier
                            % have already been computed and tested.
 iter    = 1;               % Number of iteration of the active search.

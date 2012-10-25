@@ -33,7 +33,7 @@ end
 % ---------------------------------------------------------------------
 
 kl=length(lambda);
-nh=columns(Y);
+nh=size(Y,2);
 p=length(h);
 constants;
 
@@ -53,9 +53,9 @@ for k=1:kl
     % Compute the lagrange multipliers oriented wrt the bound direction.
     [l r] = max( -lambda{k} .* bound_sign .* not(freeze) );
 
-    massert( (l==0) | (!hk.freeze(r)),'r is freeze and should not be')
+    massert( (l==0) | (~hk.freeze(r)),'r is freeze and should not be')
     
-    if l>maxl & hk.btype(r)!=Etwin & !hk.freeze(r)
+    if l>maxl && hk.btype(r)~=Etwin & ~hk.freeze(r)
         maxl=l; cst=[k r];
     end
     

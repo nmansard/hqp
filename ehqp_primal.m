@@ -17,7 +17,7 @@ function [ y x ]= ehqp_primal(h,Y);
 %
 
 p=length(h);
-nh=columns(Y);
+nh=size(Y,2);
 y = zeros(0,1);
 
 for k=1:p

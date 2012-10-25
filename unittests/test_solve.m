@@ -6,7 +6,7 @@ function x = siciliano( Aact,bact,m,EPS );
    
     Aact = cut_Au(Aact,m);
     bact = cut_Au(bact,m);
-    nh   = columns(Aact{1});
+    nh   = size(Aact{1},2);
     p    = length(Aact);
     
     x    = zeros(nh,1);

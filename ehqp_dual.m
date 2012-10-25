@@ -45,7 +45,7 @@ else
     M0       = hk.H(im0,1:rp);
     W0       = hk.W(iw,im0);
     b        = hk.b( hk.activeb );
-    if columns(b)==0 b=b'; end % Octave patch
+    if size(b,2)==0 b=b'; end % Octave patch
     
     rho         =  M0*y(1:rp) - W0'*b;  % Alg 2#4
     lambdak{kl} =  W0*rho;              % Alg 2#5

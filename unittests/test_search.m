@@ -14,8 +14,8 @@ blabla({'size = ',nh,' x',p});
 
 [primal dual h Y ]=active_search_verbose(A,b,btype,aset,abound);
 
-blabla({"Primal optimum = \n",primal'});
-blabla({"\nOptimum active set =\n",dispaset(h)});
+blabla({'Primal optimum = \n',primal'});
+blabla({'\nOptimum active set =\n',dispaset(h)});
 
 %hdist(primal,h)
 

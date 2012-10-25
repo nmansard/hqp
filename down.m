@@ -18,16 +18,17 @@ function [h,Y] = down(kdown,rdown,h,Y,THR);
 %
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
-if nargin==4
+nin = nargin
+if nin==4
     % Default argument for the HCOD threshold.
     THR=1e-8;
-    nargin=nargin+1;
+    nin=nin+1;
 end
 % ---------------------------------------------------------------------
 
 addpath('utils');
 p = length(h);
-nh = columns(Y);
+nh = size(Y,2);
 
 % ------------------------------------------------------------------------------
 % 1. Remove the line from current stage (Sec V.C.1)
@@ -58,9 +59,12 @@ hk.fw      = [iw(rdown) hk.fw];
 hk.fm      = [im(pivot) hk.fm];
 hk.active  = hk.active([1:rdown-1 rdown+1:m]);
 hk.activeb = hk.activeb([1:rdown-1 rdown+1:m]);
-iw = hk.iw = iw([1:rdown-1 rdown+1:m]);
-im = hk.im = im([1:pivot-1 pivot+1:m]);
-m = hk.m   = m-1;
+hk.iw      = iw([1:rdown-1 rdown+1:m]);
+iw         = iw([1:rdown-1 rdown+1:m]);
+hk.im      = im([1:pivot-1 pivot+1:m]);
+im         = im([1:pivot-1 pivot+1:m]);
+hk.m       = m-1;
+m          = m-1;
 
 % Bug in octave when a vector becomes []: patch below.
 if length(hk.active)==0
@@ -70,7 +74,8 @@ end
 
 % 1.c. CASE 1: no modification rank to be reported.
 if pivot<=hk.n
-    n = hk.n = n-1;
+    hk.n = n-1;
+    n    = n-1;
     h(kdown)=hk; clear hk;
     return;
 end
@@ -83,8 +88,10 @@ for i=1:hk.r-1
     hk.H(im,:)=hk.H(im,:)*R;
 end
 
-r  = hk.r  = hk.r-1;
-ra = hk.ra = hk.ra-1;
+r     = hk.r-1;
+hk.r  = hk.r-1;
+ra    = hk.ra-1;
+hk.ra = hk.ra-1;
 h(kdown)=hk; clear hk;
 
 % ------------------------------------------------------------------------------
@@ -123,10 +130,14 @@ for k=kdown+1:p
         end
 
         % Reorganize H_k.
-        im = hk.im        = im([1:prom-1 prom+1:n prom n+1:m]);
-        rp = hk.rp        = rp-1;
-        r  =  hk.r        = r+1;
-        n  =  hk.n        = n-1;
+        hk.im             = im([1:prom-1 prom+1:n prom n+1:m]);
+        im                = im([1:prom-1 prom+1:n prom n+1:m]);
+        hk.rp             = rp-1;
+        rp                = rp-1;
+        hk.r              = r+1;
+        r                 = r+1;
+        hk.n              = n-1;
+        n                 = n-1; 
         noMoreRankChange  = 1;
     else
         % 2.b.CASE 2: all the m_i are zero, L_k is upper hessenberg.
@@ -135,8 +146,10 @@ for k=kdown+1:p
             Ydown         = Ydown*R;
             hk.H(im,:)    = hk.H(im,:)*R;
         end
-        rp = hk.rp = rp-1;
-        ra = hk.ra = ra-1;
+        hk.rp = rp-1;
+        rp    = rp-1;
+        hk.ra = ra-1;
+        ra    = ra-1;
     end
     
     h(k)=hk; clear hk;

@@ -29,12 +29,13 @@ function [ A b btype nh p m r Au bu  ] = randstack( nh,p,m,r,svbound );
 %
     
 % --------------------------------------------------------------------
-if nargin == 0
-    nargin=1;
+nin = nargin
+if nin == 0
+    nin=1;
     nh=12;
 end
 
-if nargin == 1
+if nin == 1
     if nh==12
         % Size of the problem
         nh=12;
@@ -53,10 +54,10 @@ if nargin == 1
         r=[ 2 3 ];
     end
 
-    nargin = 4;
+    nin = 4;
 end
 
-if nargin==4
+if nin==4
     svbound = [0.5 1.5];
 end
 % --------------------------------------------------------------------

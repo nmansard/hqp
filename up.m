@@ -22,10 +22,11 @@ function [h,Y] = up(kup,cup,bound,h,Y,THR);
 %
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
-if nargin==5
+nin = nargin
+if nin==5
     % Default argument for the HCOD threshold.
     THR=1e-8;
-    nargin=nargin+1;
+    nin=nin+1;
 end
 % ---------------------------------------------------------------------
 
@@ -45,23 +46,26 @@ hk=h(kup);
 iw=hk.iw; im=hk.im; r=hk.r; n=hk.n; ra=hk.ra; rp=hk.rp; m=hk.m;
 
 % Add a new row to H and a new dimension in W.
-hk.iw = iw              = [iw hk.fw(1)];
+hk.iw                   = [iw hk.fw(1)];
+iw                      = [iw hk.fw(1)];
 hk.fw                   = hk.fw(2:end);
-hk.im = im              = [im hk.fm(1)];
+hk.im                   = [im hk.fm(1)];
+im                      = [im hk.fm(1)];
 hk.fm                   = hk.fm(2:end);
 hk.H(im(end),:)         = hk.A(cup,:)*Y;
 hk.W(iw(end),:)         = 0;
 hk.W(:,im(end))         = 0;
 hk.W(iw(end),im(end))   = 1; 
-hk.m = m                = m+1;
-hk.active(end+1,1)        = cup;
+hk.m                    = m+1;
+m                       = m+1;
+hk.active(end+1,1)      = cup;
 hk.activeb(end+1,1)     = cup + (bound==2)*hk.mmax;
 hk.bound(cup)           = bound;
 
 % 1.a Compute the rank of the new row, Eq (81).
 %   Find the first element of the tail of the row such that the norm of the
 %   tail is higher than the threshold: rup = max{ r, norm(ML(end,r:end))>THR }.
-rup = nh+1-find(  cumsum(flipdim( hk.H(im(end),:).^2 )) > THR^2,  1  );
+rup = nh+1-find(  cumsum(flipdim( hk.H(im(end),:).^2, 2 )) > THR^2,  1  );
 
 % 1.b modify the decomposition of level k.
 if rup<=ra

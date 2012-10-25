@@ -65,42 +65,43 @@ p  = length(A);    % Number of level
 nh = size(A{1},2); % Parameter size
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
-if nargin==2
+nin = nargin
+if nin==2
     % Default argument for "btype": all the constraints are equalities.
     for k=1:p
         btype{k}=1:size(A{k},1);
     end
-    nargin=nargin+1;
+    nin=nin+1;
 end
 
-if nargin==3
+if nin==3
     % Default argument for "active": all the constraint are active.
     for k=1:p
         active{k}=1:size(A{k},1);
     end
-    nargin=nargin+1;
+    nin=nin+1;
 end
 
-if nargin==4
+if nin==4
     % Default argument for "bounds": all the active constraints are the lower
     % bounds.
     for k=1:p
         bounds{k} = ones(length(active{k}),1);
     end
-    nargin=nargin+1;
+    nin=nin+1;
 end
 
-if nargin==5
+if nin==5
     % Default argument for the HCOD threshold.
     EPS=1e-8;
-    nargin=nargin+1;
+    nin=nin+1;
 end
 % ---------------------------------------------------------------------
 
 for k=1:p
 
-    if rows(active{k})==1 active{k}=active{k}'; end
-    if rows(bounds{k})==1 bounds{k}=bounds{k}'; end
+    if size(active{k},1)==1 active{k}=active{k}'; end
+    if size(bounds{k},1)==1 bounds{k}=bounds{k}'; end
 
     hk.A=A{k};
     hk.b=b{k};
