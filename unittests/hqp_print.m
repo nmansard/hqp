@@ -1,6 +1,6 @@
 function str = hqp_print(h,filename);
 
-% hqp_print prints a given HQP problem (under the "h" structure shape) to a
+% hqp_print prints a given HQP problem (with the "h" structure shape) into a
 % file.
 %% Synopsis:
 %     str   = hqp_print(h)
