@@ -19,10 +19,10 @@ end
 if norm(why_recompose(hd,Yd)-active_rows(h))> 1e-6
     blabla({testname,'Error in the +u-d reconstruction.'});
 end
-if any([hu.r]!=([h.r]+[0 0 0 1]))
+if any([hu.r]~=([h.r]+[0 0 0 1]))
     blabla({testname,'Error in the rank.'});
 end
-if any([hd.r]!=([h.r]))
+if any([hd.r]~=([h.r]))
     blabla({testname,'Error in the rank of th +u-d.'});
 end
 
@@ -46,7 +46,7 @@ S(c0:c1,:) = S([c0+1:c1 c0],:);
 if norm(why_recompose(hu,Yu)-S*active_rows(h))> 1e-6
     blabla({testname,'Error in the +u-d reconstruction.'});
 end
-if any([hu.r]!=([h.r]))
+if any([hu.r]~=([h.r]))
     blabla({testname,'Error in the rank of th +u-d.'});
 end
 

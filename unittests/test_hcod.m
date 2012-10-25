@@ -13,7 +13,7 @@ end
 [h,Y] = hcod(A,b,btype,active,bounds);
 
 for k=1:p
-    if h(k).r != rref(k)
+    if h(k).r ~= rref(k)
         blabla({'Error in the rank of the decomposition at level ',k});
     end
 end

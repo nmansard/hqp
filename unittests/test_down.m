@@ -13,10 +13,12 @@ testname = 'DOWN1-RD: ';
 if norm(why_recompose(hd,Yd)-active_rows(hd))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
 end
-if any([hd.r](1)!=[h.r](1))
+hdr = [hd.r];
+hr = [h.r];
+if any(hdr(1)~=hr(1))
     blabla({testname,'Error in the rank of the modified level.'});
 end
-if any([hd.r](2:end)!=[h.r](2:end))
+if any(hdr(2:end)~=hr(2:end))
     blabla({testname,'Error in the rank of the other levels.'});
 end
 
@@ -28,10 +30,12 @@ testname = 'DOWN1-FR: ';
 if norm(why_recompose(hd,Yd)-active_rows(hd))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
 end
-if [hd.r](1)!=[h.r](1)-1
+hdr = [hd.r];
+hr = [h.r];
+if hdr(1)~=hr(1)-1
     blabla({testname,'Error in the rank of the modified level.'});
 end
-if any([hd.r](2:end)!=[h.r](2:end))
+if any(hdr(2:end)~=hr(2:end))
     blabla({testname,'Error in the rank of the other levels.'});
 end
 
@@ -43,13 +47,15 @@ testname = 'DOWN1-FRPROM: ';
 if norm(why_recompose(hd,Yd)-active_rows(hd))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
 end
-if [hd.r](3)!=[h.r](3)-1
+hdr = [hd.r];
+hr = [h.r];
+if hdr(3)~=hr(3)-1
     blabla({testname,'Error in the rank of the modified level.'});
 end
-if any([hd.r](1:2)!=[h.r](1:2))
+if any(hdr(1:2)~=hr(1:2))
     blabla({testname,'Error in the rank of the other levels.'});
 end
-if [hd.r](4)!=[h.r](4)+1
+if hdr(4)~=hr(4)+1
     blabla({testname,'Error in the rank of the promoted levels.'});
 end
 
@@ -63,10 +69,12 @@ testname = 'DOWN1-ALL: ';
 if norm(why_recompose(hd,Yd)-active_rows(hd))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
 end
-if [hd.r](1)!=0
+hdr = [hd.r];
+hr = [h.r];
+if hdr(1)~=0
     blabla({testname,'Error in the rank of the modified level.'});
 end
-if any([hd.r](2:4)!=[h.r](2:4)+[1 0 0])
+if any(hdr(2:4)~=hr(2:4)+[1 0 0])
     blabla({testname,'Error in the rank of the other levels.'});
 end
 
@@ -83,7 +91,8 @@ testname = 'DOWN2-DEF: ';
 if norm(why_recompose(hd,Yd)-active_rows(hd))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
 end
-if any([hd.r]!=[2 4 1 1])
+hdr = [hd.r];
+if any(hdr~=[2 4 1 1])
     blabla({testname,'Error in the rank.'});
 end
 

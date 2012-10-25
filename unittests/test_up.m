@@ -12,7 +12,7 @@ testname = 'UP4-FR: ';
 if norm(why_recompose(hup,Yup)-active_rows(hup))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
 end
-if any([hup.r]!=([h.r]+[0 0 0 1]))
+if any([hup.r]~=([h.r]+[0 0 0 1]))
     blabla({testname,'Error in the rank.'});
 end
 
@@ -27,7 +27,7 @@ if norm(why_recompose(hu,Yup)-active_rows(hu))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
     pm(why_recompose(hu,Yup)-active_rows(hu));
 end
-if any([hu.r]!=[h.r])
+if any([hu.r]~=[h.r])
     blabla({testname,'Error in the rank.'});
 end
 h(2).A(4,:) = Adef;
@@ -43,7 +43,7 @@ if norm(why_recompose(hup,Yupp)-active_rows(hup))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
     pm(why_recompose(hup,Yupp)-active_rows(hup));
 end
-if any([hup.r]!=[h.r])
+if any([hup.r]~=[h.r])
     blabla({testname,'Error in the rank.'});
 end
 h(2).A(4,:) = Adef;
@@ -57,7 +57,7 @@ if norm(why_recompose(hup,Yupp)-active_rows(hup))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
     pm(why_recompose(hup,Yupp)-active_rows(hup));
 end
-if any([hup.r]!=[h.r]+[1 0 0 0])
+if any([hup.r]~=[h.r]+[1 0 0 0])
     blabla({testname,'Error in the rank.'});
 end
 
@@ -71,7 +71,7 @@ if norm(why_recompose(hup,Yup)-active_rows(hup))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
     pm(why_recompose(hup,Yup)-active_rows(hup));
 end
-if any([hup.r]!=[h.r]+[1 0 0 0])
+if any([hup.r]~=[h.r]+[1 0 0 0])
     blabla({testname,'Error in the rank.'});
 end
 
@@ -93,7 +93,7 @@ if norm(why_recompose(hup,Yup)-active_rows(hup))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
     pm(why_recompose(hup,Yup)-active_rows(hup));
 end
-if any([hup.r]!=[h.r]+[3 0 0 -3])
+if any([hup.r]~=[h.r]+[3 0 0 -3])
     blabla({testname,'Error in the rank.'});
 end
 
@@ -114,10 +114,10 @@ if norm(why_recompose(hup,Yup)-active_rows(hup))> 1e-6
     blabla({testname,'Error in the reconstruction.'});
     pm(why_recompose(hup,Yup)-active_rows(hup));
 end
-if any([hup.r]!=[h.r]+[3 0 0 -3])
+if any([hup.r]~=[h.r]+[3 0 0 -3])
     blabla({testname,'Error in the rank.'});
 end
-if hup(4).r!=0
+if hup(4).r~=0
     blabla({testname,'Error in the rank of the last level.'});
 end
 

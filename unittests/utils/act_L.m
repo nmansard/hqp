@@ -1,10 +1,10 @@
-function L = _L(h,k);
+function L = act_L(h,k);
 
 if nargin==2
     if strcmp(k,'all')
         L={};
         for k=1:length(h)
-           L{k} = _L(h,k); 
+           L{k} = act_L(h,k); 
         end
       
     else
@@ -14,7 +14,7 @@ if nargin==2
 else
     L=[];
     for k=1:length(h)
-        Lk = _L(h,k); rk=size(Lk,1);
+        Lk = act_L(h,k); rk=size(Lk,1);
         
         L(end+1:end+rk,end+1:end+rk)= Lk;
     end

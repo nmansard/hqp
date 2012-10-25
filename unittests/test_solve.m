@@ -1,25 +1,6 @@
+function test_solve()
+
 addpath('unittests/utils');
-
-% Compute the solution of the eHQP using the iterative equations of
-% Siciliano91.
-function x = siciliano( Aact,bact,m,EPS );
-   
-    Aact = cut_Au(Aact,m);
-    bact = cut_Au(bact,m);
-    nh   = size(Aact{1},2);
-    p    = length(Aact);
-    
-    x    = zeros(nh,1);
-    P    = eye(nh);
-
-    for k=1:p
-        AP = (Aact{k}*P);
-        AP_inv = pinv(AP,EPS);
-        x = x + AP_inv*( bact{k} - Aact{k}*x );
-        P = P - AP_inv*AP;
-    end
-end
-
 
 % ------------------------------------------------------------------------------
 % Compare for a 1-level full-rank fully-active stack.
@@ -120,8 +101,8 @@ testname = 'TSOLVE 4L-RD: ';
 [y x] = ehqp_primal(h,Y);
 
 k=4;
-bk=_b(h,k);
-Ak=_A(h,k);
+bk=act_b(h,k);
+Ak=act_A(h,k);
 
 rhok = Y'*Ak'*(Ak*x-bk);
 lambda = ehqp_dual(k,y,h,Y);
@@ -140,4 +121,25 @@ if norm(active_rows(h)' * stacked_cell(mult) + x) > 1e-5
     blabla({testname,'Error in the norm of last stage C^T lambda.'});
 end
 
+end
 %disp('Next'); return
+
+% Compute the solution of the eHQP using the iterative equations of
+% Siciliano91.
+function x = siciliano( Aact,bact,m,EPS );
+   
+    Aact = cut_Au(Aact,m);
+    bact = cut_Au(bact,m);
+    nh   = size(Aact{1},2);
+    p    = length(Aact);
+    
+    x    = zeros(nh,1);
+    P    = eye(nh);
+
+    for k=1:p
+        AP = (Aact{k}*P);
+        AP_inv = pinv(AP,EPS);
+        x = x + AP_inv*( bact{k} - Aact{k}*x );
+        P = P - AP_inv*AP;
+    end
+end

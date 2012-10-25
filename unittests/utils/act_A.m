@@ -1,20 +1,21 @@
-function b = _b(h,k);
+function A = act_A(h,k);
 
 if nargin==2
     if strcmp(k,'all')
-        b={};
+        A={};
         for k=1:length(h)
-            b{k} = _b(h,k);
+            ia = h(k).active;
+            A{k} = h(k).A(ia,:);
         end
       
     else
         ia = h(k).active;
-        b = h(k).b(h(k).activeb);
+        A = h(k).A(ia,:);
     end
 else
-    b=[];
+    A=[];
     for k=1:length(h)
         ia = h(k).active;
-        b = [ b; _b(h,k)];
+        A = [A;h(k).A(ia,:)];
     end
 end

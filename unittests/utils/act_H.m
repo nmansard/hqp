@@ -1,10 +1,10 @@
-function H = _H(h,k);
+function H = act_H(h,k);
 
 if nargin==2
     if strcmp(k,'all')
         H={};
         for k=1:length(h)
-           H{k} = _H(h,k); 
+           H{k} = act_H(h,k); 
         end
       
     else
@@ -14,7 +14,7 @@ if nargin==2
 else
     H=[];
     for k=1:length(h)
-        Hk = _H(h,k);
+        Hk = act_H(h,k);
         if k>1 & (size(H,2)<size(Hk,2)) 
             H(end,size(Hk,2)) = 0;
         end
