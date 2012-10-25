@@ -60,7 +60,11 @@ for k=1:p
             Ax0  = hk.A(r,:)*x0;
             typ0 = check_bound(Ax0,b,typ,THR);     % Alg 4#6
             if typ0==Enone
-                tau=(b1-Ax0)/(Ax1-Ax0);            % Alg 4#7
+				if abs(Ax1-Ax0)<1e-8 			   % Alg 4#7
+					tau=1;
+				else
+					tau=(b1-Ax0)/(Ax1-Ax0);
+				end
             else
                 tau=1-THR;                         % Alg 4#9
             end
