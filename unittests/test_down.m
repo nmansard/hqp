@@ -7,7 +7,7 @@ A{1}(1,:) = Y(end,:);
 [h,Y] = hcod(A,b,btype,active,bound);
 
 % ------------------------------------------------------------------------------
-% Remove a row from a rank def level (no regularization no promotion).
+% Remove a row from a rank deficient level (no regularization no promotion).
 testname = 'DOWN1-RD: ';
 [hd,Yd] = down(1,2,h,Y);
 if norm(why_recompose(hd,Yd)-active_rows(hd))> 1e-6

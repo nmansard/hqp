@@ -18,7 +18,7 @@ end
 
 %disp('Next'); return
 % ------------------------------------------------------------------------------
-% Introduce a rank def Ju that does not modify L.
+% Introduce a rank deficient Ju that does not modify L.
 testname = 'UP2-RDM: ';
 Adef = h(2).A(4,:);
 h(2).A(4,:) = rand(1,3)*h(2).A(1:3,:);
@@ -34,7 +34,7 @@ h(2).A(4,:) = Adef;
 
 %disp('Next'); return
 % ------------------------------------------------------------------------------
-% Introduce a rank def Ju that modifies L.
+% Introduce a rank deficient Ju that modifies L.
 testname = 'UP2-RDL: ';
 Adef = h(2).A(4,:);
 h(2).A(4,:) = rand(1,h(1).m)*h(1).A(h(1).active,:);
