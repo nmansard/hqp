@@ -30,7 +30,7 @@ function [h Y] = hcod(A,b,btype,active,bounds,EPS);
 % h{k}.mmax      is the number of constraints = rows(A_k).
 % h{k}.m         is the number of active constraints.
 % h{k}.r         is the rank of the level = rank(A_k Z_{k-1}).
-% h{k}.n         is the number of rank-deficient constraints = s-r.
+% h{k}.n         is the number of rank-deficient constraints = m-r.
 % h{k}.ra        is the number of columns of H_k = sum(i=1:k) r_i
 % h{k}.rp        is the number of columns of M_k = sum(i=1:k-1) r_i
 %
