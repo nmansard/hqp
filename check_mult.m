@@ -25,7 +25,7 @@ function [ need cst h  maxl ] = check_mult(lambda,h,Y,THR);
 %
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS
-%    -- cf. COPYING.LESSER
+%    -- cf. LICENSE.txt
 %
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------

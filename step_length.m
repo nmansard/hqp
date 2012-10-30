@@ -29,7 +29,7 @@ function [ need taumax cst] = step_length(x0,x1,h,Y,THR);
 %
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS
-%    -- cf. COPYING.LESSER
+%    -- cf. LICENSE.txt
 %
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------

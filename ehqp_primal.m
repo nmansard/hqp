@@ -18,7 +18,7 @@ function [ y x ]= ehqp_primal(h,Y);
 %
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS
-%    -- cf. COPYING.LESSER
+%    -- cf. LICENSE.txt
 %
 
 p=length(h);

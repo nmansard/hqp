@@ -18,7 +18,7 @@ function [h,Y] = down(kdown,rdown,h,Y,THR);
 %
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS
-%    -- cf. COPYING.LESSER
+%    -- cf. LICENSE.txt
 %
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------

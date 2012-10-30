@@ -22,7 +22,7 @@ function [ h ] = freeze(lambda,h,THR);
 %
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS
-%    -- cf. COPYING.LESSER
+%    -- cf. LICENSE.txt
 %
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
 if nargin==2

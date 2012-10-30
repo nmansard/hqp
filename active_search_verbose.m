@@ -35,7 +35,7 @@ function [ primal dual h Y xtrack ] = active_search_verbose(A,b,btype,aset_init,
 %
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS
-%    -- cf. COPYING.LESSER
+%    -- cf. LICENSE.txt
 %
 
 addpath('utils');

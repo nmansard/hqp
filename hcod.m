@@ -61,7 +61,7 @@ function [h Y] = hcod(A,b,btype,active,bounds,EPS);
 %
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS
-%    -- cf. COPYING.LESSER
+%    -- cf. LICENSE.txt
 %
 
 addpath('utils');
