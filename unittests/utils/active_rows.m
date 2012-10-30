@@ -1,12 +1,10 @@
-function [A,b] = active_rows(h,data);
+function A = active_rows(h,data);
 
 % active_rows returns the stack of the input active quantity.
 %
 %% Synopsis:
 %    A     = active_rows(h)
-%    [A,b] = active_rows(h)
 %    A     = active_rows(h,data)
-%    [A,b] = active_rows(h,data)
 %
 %% Input:
 %    h      is a cell containing an "active" field that is an array of indices.
@@ -17,7 +15,6 @@ function [A,b] = active_rows(h,data);
 %    A      the function selects the active rows of the cell "data".
 %              (corresponding to h(k).active) and stack them to return.  If no 
 %              data is input, then data is chosen from h.A. 
-%    b      the stacked h.b
 %
 %
 
@@ -33,7 +30,6 @@ else
 end        
 % --------------------------------------------------------------------
 
-b=[];
 A=[];
 m=0;
 for k=1:p
@@ -43,6 +39,5 @@ for k=1:p
     else
         A=[A;  data(m+ia,:)];
     end        
-    b = [b ; h(k).b( h(k).activeb )];
     m=m+h(k).mmax;
 end
