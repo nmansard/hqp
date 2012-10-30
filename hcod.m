@@ -56,7 +56,7 @@ function [h Y] = hcod(A,b,btype,active,bounds,EPS);
 %                  * (W*H*Y')(i,:) = A(active(i),:)
 % h{k}.bound     is the type of the constraints (upper or lower bounds, when relevant).
 %
-% Copyright Nicolas Mansard -- LAAS/CNRS -- cf. COPYING.LESSER
+% Copyright Nicolas Mansard -- LAAS/CNRS -- and Adrien Escande -- JRL/CNRS -- cf. COPYING.LESSER
 %
 
 addpath('utils');
