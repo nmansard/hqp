@@ -71,7 +71,7 @@ end
 
 %disp('Next'); return
 % ------------------------------------------------------------------------------
-% Compare for a partially activated rank-def multi level stack
+% Compare for a partially activated rank-deficient multi level stack
 testname = 'SOLVE 4L-RD: ';
 
 [ A b btype nh p mref rref Au bu ] = randstack(12,4,[5 4 6 4],[2 2 3 3]);
@@ -92,7 +92,7 @@ end
 % ---HT SOLVE ------------------------------------------------------------------
 % ------------------------------------------------------------------------------
 
-% Compare for a partially activated rank-def multi level stack
+% Compare for a partially activated rank-deficient multi level stack
 testname = 'TSOLVE 4L-RD: ';
 
 [ A b btype nh p mref rref Au bu ] = randstack(12,4,[5 4 6 4],[2 2 3 3]);
