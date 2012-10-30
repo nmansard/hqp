@@ -27,8 +27,7 @@ if nargin==0
 end
 % --------------------------------------------------------------------
 
-rand('state',seed);
-randn('state',rand*1000);
+rand_init(seed);
 
 nh=floor(exprnd(1)*20+5);
 maverage = max(nh * (randn*0.2+0.25),4);

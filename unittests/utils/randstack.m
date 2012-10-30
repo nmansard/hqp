@@ -29,7 +29,7 @@ function [ A b btype nh p m r Au bu  ] = randstack( nh,p,m,r,svbound );
 %
     
 % --------------------------------------------------------------------
-nin = nargin
+nin = nargin;
 if nin == 0
     nin=1;
     nh=12;
