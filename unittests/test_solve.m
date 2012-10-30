@@ -12,7 +12,8 @@ testname = 'SOLVE-1L: ';
 [h,Y] = hcod(A,b,btype,active,bound);
 [y x] = ehqp_primal(h,Y);
 
-[Aact,bact] = active_rows(h) ;
+Aact   = active_rows(h) ;
+bact   = active_rows(h,{h.b}) ;
 x_pinv = pinv(Aact)*bact;
 
 if norm(x-x_pinv)> 1e-6
@@ -29,7 +30,8 @@ testname = 'SOLVE-2L: ';
 [h,Y] = hcod(A,b,btype,active,bound);
 [y x] = ehqp_primal(h,Y);
 
-[Aact,bact] = active_rows(h) ;
+Aact   = active_rows(h) ;
+bact   = active_rows(h,{h.b}) ;
 x_pinv = pinv(Aact)*bact;
 
 if norm(x-x_pinv)> 1e-6
@@ -46,7 +48,8 @@ testname = 'SOLVE 4L-FR: ';
 [h,Y] = hcod(A,b,btype,active,bound);
 [y x] = ehqp_primal(h,Y);
 
-[Aact,bact] = active_rows(h) ;
+Aact   = active_rows(h) ;
+bact   = active_rows(h,{h.b}) ;
 x_pinv = pinv(Aact)*bact;
 
 if norm(x-x_pinv)> 1e-6
@@ -63,7 +66,8 @@ testname = 'SOLVE-3L-RD: ';
 [h,Y] = hcod(A,b,btype,active,bound);
 [y x] = ehqp_primal(h,Y);
 
-[Aact,bact] = active_rows(h) ;
+Aact   = active_rows(h) ;
+bact   = active_rows(h,{h.b}) ;
 x_sici = siciliano(Aact,bact,[h.m],1e-5);
 if norm(x-x_sici)> 1e-5
     blabla({testname,'Error in the norm.'});
@@ -79,7 +83,8 @@ testname = 'SOLVE 4L-RD: ';
 [h,Y] = hcod(A,b,btype,active,bound);
 [y x] = ehqp_primal(h,Y);
 
-[Aact,bact] = active_rows(h) ;
+Aact   = active_rows(h) ;
+bact   = active_rows(h,{h.b}) ;
 x_sici = siciliano(Aact,bact,[h.m],1e-5);
 if norm(x-x_sici)> 1e-5
     blabla({testname,'Error in the norm.'});
