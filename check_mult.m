@@ -23,7 +23,9 @@ function [ need cst h  maxl ] = check_mult(lambda,h,Y,THR);
 %               side effect, h is returned.
 %    maxl    the reached maximum corresponding to the cst constraint.
 %
-% Copyright Nicolas Mansard -- LAAS/CNRS -- and Adrien Escande -- JRL/CNRS -- cf. COPYING.LESSER
+% Copyright Nicolas Mansard -- LAAS/CNRS
+%    -- and Adrien Escande -- JRL/CNRS
+%    -- cf. COPYING.LESSER
 %
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------

@@ -56,7 +56,9 @@ function [h Y] = hcod(A,b,btype,active,bounds,EPS);
 %                  * (W*H*Y')(i,:) = A(active(i),:)
 % h{k}.bound     is the type of the constraints (upper or lower bounds, when relevant).
 %
-% Copyright Nicolas Mansard -- LAAS/CNRS -- and Adrien Escande -- JRL/CNRS -- cf. COPYING.LESSER
+% Copyright Nicolas Mansard -- LAAS/CNRS
+%    -- and Adrien Escande -- JRL/CNRS
+%    -- cf. COPYING.LESSER
 %
 
 addpath('utils');
@@ -64,7 +66,7 @@ p  = length(A);    % Number of level
 nh = size(A{1},2); % Parameter size
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
-nin = nargin
+nin = nargin;
 if nin==2
     % Default argument for "btype": all the constraints are equalities.
     for k=1:p

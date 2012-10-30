@@ -27,11 +27,13 @@ function [ need taumax cst] = step_length(x0,x1,h,Y,THR);
 % Alg. 4#6 and 4#10. Moreover, it uses a shortcut by setting a step of
 % length tau=1-EPS if a bound is not satisfied for x_0.
 %
-% Copyright Nicolas Mansard -- LAAS/CNRS -- and Adrien Escande -- JRL/CNRS -- cf. COPYING.LESSER
+% Copyright Nicolas Mansard -- LAAS/CNRS
+%    -- and Adrien Escande -- JRL/CNRS
+%    -- cf. COPYING.LESSER
 %
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
-nin = nargin
+nin = nargin;
 if nin==4
     % Default argument for the HCOD threshold.
     THR=1e-8;

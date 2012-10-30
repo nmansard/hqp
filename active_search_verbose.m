@@ -32,7 +32,9 @@ function [ primal dual h Y xtrack ] = active_search_verbose(A,b,btype,aset_init,
 % inside the "for k=kcheck+1:p+1" loop, and the current level of the outer
 % loop is stored inside "kcheck".
 %
-% Copyright Nicolas Mansard -- LAAS/CNRS -- and Adrien Escande -- JRL/CNRS -- cf. COPYING.LESSER
+% Copyright Nicolas Mansard -- LAAS/CNRS
+%    -- and Adrien Escande -- JRL/CNRS
+%    -- cf. COPYING.LESSER
 %
 
 addpath('utils');
@@ -40,7 +42,7 @@ p=length(A);
 nh=size(A{1},2);
 
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
-nin = nargin
+nin = nargin;
 if nin==3
     % The initial active set only contains equality constraints.
     [ aset_init aset_bound ] = initset(btype);

@@ -16,7 +16,9 @@ function [ lambdak ]= ehqp_dual(kl,y,h,Y);
 %              partitioned for each levels i=1:kl into a cell. w_kl^*
 %              corresponds to lambdak{kl}.
 %
-% Copyright Nicolas Mansard -- LAAS/CNRS -- and Adrien Escande -- JRL/CNRS -- cf. COPYING.LESSER
+% Copyright Nicolas Mansard -- LAAS/CNRS
+%    -- and Adrien Escande -- JRL/CNRS
+%    -- cf. COPYING.LESSER
 %
 
 p=length(h);
@@ -70,7 +72,7 @@ for k=kl-1:-1:1
         W1         = hk.W(iw,im1);
 
         rho        = rhobar(rp+1:ra);  % Alg 2#8
-        rhobar     = rhobar(1:rp);
+        rhobar     = rhobar(1:rp,1);
     
         rho        = L'\rho;           % Alg 2#9
         lambdak{k} = W1*rho;           % Alg 2#10

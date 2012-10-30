@@ -20,7 +20,9 @@ function [ h ] = freeze(lambda,h,THR);
 % stays, freezed and active, as an equality constraint until the end of the 
 % active search.
 %
-% Copyright Nicolas Mansard -- LAAS/CNRS -- and Adrien Escande -- JRL/CNRS -- cf. COPYING.LESSER
+% Copyright Nicolas Mansard -- LAAS/CNRS
+%    -- and Adrien Escande -- JRL/CNRS
+%    -- cf. COPYING.LESSER
 %
 % --- DEFAULT ARGUMENTS --------------------------------------------------------
 if nargin==2
