@@ -13,6 +13,9 @@ function [ y x ]= ehqp_primal(h,Y);
 %    y       primal optimum in the Y basis.
 %    x       primal optimum in the canonical basis.
 %
+% This function corresponds to Alg. 1 of the paper "Hiearchical Quadratic
+% Programming" (Part I).
+%
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS
 %    -- cf. COPYING.LESSER

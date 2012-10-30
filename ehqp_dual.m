@@ -16,6 +16,9 @@ function [ lambdak ]= ehqp_dual(kl,y,h,Y);
 %              partitioned for each levels i=1:kl into a cell. w_kl^*
 %              corresponds to lambdak{kl}.
 %
+% This function corresponds to Alg. 2 of the paper "Hiearchical Quadratic
+% Programming" (Part I).
+%
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS
 %    -- cf. COPYING.LESSER

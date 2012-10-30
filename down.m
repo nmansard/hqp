@@ -13,6 +13,9 @@ function [h,Y] = down(kdown,rdown,h,Y,THR);
 %% Output:
 %    h,Y   the function modifies the input h and Y and returns them.
 %
+% This function is described in the paper "Hierarchical quadratic
+% programming", in Part II, Section 3.3.
+%
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS
 %    -- cf. COPYING.LESSER
@@ -32,11 +35,11 @@ p = length(h);
 nh = size(Y,2);
 
 % ------------------------------------------------------------------------------
-% 1. Remove the line from current stage (Sec V.C.1)
+% 1. Remove the line from current stage (Sec II-3.3.1)
 hk=h(kdown);
 iw=hk.iw; im=hk.im; r=hk.r; n=hk.n; ra=hk.ra; rp=hk.rp; m=hk.m;
 
-% 1.a Set a "1" in the <ldown> row of W: Eq (89).
+% 1.a Set a "1" in the <ldown> row of W: Eq (II-26).
 % W is transformed to:
 %   W = [ W_a  0  W_b ]
 %       |  0   1   0  |
@@ -96,10 +99,10 @@ hk.ra = hk.ra-1;
 h(kdown)=hk; clear hk;
 
 % ------------------------------------------------------------------------------
-% 2. Propagation of Ydown to the levels k+1 .. p (Sec V.C.1)
+% 2. Propagation of Ydown to the levels k+1 .. p (Sec II-3.3.2)
 
 % noMoreRankChange will be set to 1 when one level increases its rank (last
-% paragraph of Sec. V.C.2).
+% paragraph of Sec. II-3.3.2, case 2.3).
 noMoreRankChange=0;
 
 for k=kdown+1:p
@@ -115,15 +118,15 @@ for k=kdown+1:p
         continue;
     end
     
-    % Check among the m1..mn of Eq (90) if one is nonzero.
+    % Check among the nu1..nun of Eq (II-28) if one is nonzero.
     if norm(hk.H(im(1:n),hk.rp))>THR 
 
-        % 2.b.CASE 1: one of the m1..mn is nonzero
+        % 2.b.CASE (II-3.3.2)-2.2: one of the nu1..nun is nonzero
         
-        % Find the first nonzero m_i.
+        % Find the first nonzero nu_i.
         prom = find( abs(hk.H(im(1:n),rp)),1 );
 
-        % Nullify all the m_i from m_prom.
+        % Nullify all the nu_i from nu_prom.
         for i=prom+1:hk.n
             Wdown         = givens(hk.H(im,rp),prom,i)';
             hk.H(im,1:ra) = Wdown*hk.H(im,1:ra);
@@ -141,7 +144,7 @@ for k=kdown+1:p
         n                 = n-1; 
         noMoreRankChange  = 1;
     else
-        % 2.b.CASE 2: all the m_i are zero, L_k is upper hessenberg.
+        % 2.b.CASE (II-3.3.2)-2.1: all the m_i are zero, L_k is upper hessenberg.
         for i=1:r
             R             = givens(hk.H(im(n+i),:),rp-1+i,rp-1+i+1);
             Ydown         = Ydown*R;

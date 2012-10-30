@@ -27,10 +27,11 @@ function [ primal dual h Y xtrack ] = active_search_verbose(A,b,btype,aset_init,
 %    Y             right basis of the HCOD "h".
 %    THR           is the threshold used to test the positivity.
 %
-% The function corresponds to Alg. 5. To avoid an extra computation of the
-% primal at each iteration of the outer loop of the paper, it is performed
-% inside the "for k=kcheck+1:p+1" loop, and the current level of the outer
-% loop is stored inside "kcheck".
+% The function corresponds to Alg. 5 of the paper Hierarchical Quadratic
+% Programming (Part I). To avoid an extra computation of the primal at each
+% iteration of the outer loop of the paper, it is performed inside the "for
+% k=kcheck+1:p+1" loop, and the current level of the outer loop is stored
+% inside "kcheck".
 %
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS

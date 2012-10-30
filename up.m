@@ -17,6 +17,9 @@ function [h,Y] = up(kup,cup,bound,h,Y,THR);
 %% Output:
 %    h,Y   the function modifies the input h and Y and returns them.
 %
+% This function is described in the paper "Hierarchical quadratic
+% programming", in Part II, Section 3.2.
+%
 % Copyright Nicolas Mansard -- LAAS/CNRS
 %    -- and Adrien Escande -- JRL/CNRS
 %    -- cf. COPYING.LESSER
@@ -63,22 +66,22 @@ hk.active(end+1,1)      = cup;
 hk.activeb(end+1,1)     = cup + (bound==2)*hk.mmax;
 hk.bound(cup)           = bound;
 
-% 1.a Compute the rank of the new row, Eq (81).
+% 1.a Compute the rank of the new row, Eq (II-18).
 %   Find the first element of the tail of the row such that the norm of the
 %   tail is higher than the threshold: rup = max{ r, norm(ML(end,r:end))>THR }.
 rup = nh+1-find(  cumsum(flipdim( hk.H(im(end),:).^2, 2 )) > THR^2,  1  );
 
 % 1.b modify the decomposition of level k.
 if rup<=ra
-    % 1.b.TRUE (case V.B.2) The new row does not increase the rank of the level.
+    % 1.b.TRUE (case II-3.2.2) The new row does not increase the rank of the level.
     if rup>rp
-        % There is nonzero elements below L, Eq (82).
+        % There is nonzero elements below L, Eq (II-19).
         for i=rup-rp:-1:1
             Wi          = givens( hk.H(im(:),rp+i),n+i,m )';
             hk.H(im,:)  = Wi*hk.H(im,:);
             hk.W(iw,im) = hk.W(iw,im)*Wi';
         end
-        % else: There is only zeros below L, Eq (83): nothing to do.
+        % else: There is only zeros below L, Eq (II-20): nothing to do.
     end
     % Switch H row.
     hk.im = [im(end) im(1:end-1)];
@@ -87,10 +90,10 @@ if rup<=ra
     return;
 end
 
-% 1.b.FALSE (case V.B.3) The new row does not increase the rank of the level.
+% 1.b.FALSE (case II-3.2.3) The new row does increase the rank of the level.
 %     Nullify the tail of the row: 
 Yup = eye(nh);
-for i=rup-1:-1:ra+1  % The loop corresponds to Eq (79).
+for i=rup-1:-1:ra+1  % The loop corresponds to Eq (II-16).
     Yi               = givens(hk.H(im(end),:),i,i+1);
     hk.H(im(end),:)  = hk.H(im(end),:)*Yi;
     Yup              = Yup*Yi;
@@ -103,7 +106,7 @@ clear iw im r n ra rp m;
 
 
 % --- Propagation --------------------------------------------------------------
-% If Yup exists, apply it to the above levels (sec. V.B.4)
+% If Yup exists, apply it to the above levels (sec. II-3.2.4)
 for k=kup+1:p
     massert( not(exist('hk')) ,'Error, hk should have been cleared.');
     hk=h(k);
@@ -112,15 +115,15 @@ for k=kup+1:p
     hk.H(im,:) = hk.H(im,:)*Yup;
     
     if rup<rp+1
-        % (case V.B.7): Rank already lost, nothing to do.
+        % (case II-3.2.7): Rank already lost, nothing to do.
     elseif rup>ra
-        % (Case V.B.5): Rank lost later, L simply shifts on the right.
+        % (Case II-3.2.5): Rank lost later, L simply shifts on the right.
         hk.rp = rp+1;
         hk.ra = ra+1;
     else
-        % (case V.B.6) Aup is colinear to one row of this level: rank lost here.
-        rdef = rup-rp; % Row to be removed from L.
-        for i=rdef:-1:2 % The loop corresponds to Eq (79).
+        % (case II-3.2.6) Aup is colinear to one row of this level: rank lost here.
+        rdef = rup-rp;  % Row to be removed from L.
+        for i=rdef:-1:2 % The loop corresponds to Eq (II-16).
             Wi             = givens(hk.H(im(:),rp+i),n+i-1,n+rdef)';
             hk.H(im(:),:)  = Wi*hk.H(im(:),:);
             hk.W(iw,im)    = hk.W(iw,im)*Wi';
