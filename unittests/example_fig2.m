@@ -1,7 +1,7 @@
 % Compute the optimum of a 2D problem and draws a representation of the
 % active-search path with respect to the constraints.
-% The problem is the one drawn in the paper (part I) in Fig. 2. 
-% To comply with the example of the paper, the active-search algo should
+% The problem corresponds to the Fig.2 of the paper (part I). 
+% To comply with the example of the paper, the active-search algorithm should
 % start from a given initial point, which is not possible with the hierarchic
 % solver. To produce a similar behavior, the problem is shifted, so that x0 is
 % at the origin. And a third task is added as "x = -x0" to attract the
